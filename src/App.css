@@ -226,28 +226,88 @@ body {
 .status-box { display: flex; justify-content: center; align-items: center; min-height: 300px; width: 100%; }
 .footer { padding: 40px; opacity: 0.5; font-size: 13px; text-align: center; }
 
-/* 8. RESPONSIVE MOBILE */
-@media (max-width: 600px) {
+/* 8. RESPONSIVE MOBILE - PERBAIKAN TOTAL */
+@media (max-width: 650px) {
+  /* Navbar jadi lebih ringkas */
+  .navbar {
+    padding: 10px 0;
+  }
+
   .nav-container {
-    flex-direction: column; 
-    gap: 15px;
+    flex-direction: column; /* Tumpuk Logo dan Nav-Right */
+    gap: 12px;
+    padding: 0 15px;
+  }
+
+  .logo {
+    font-size: 20px;
+    align-self: flex-start; /* Logo tetap di kiri atas */
   }
 
   .nav-right {
     width: 100%;
+    display: flex;
+    gap: 10px;
     justify-content: space-between;
   }
 
+  /* Search bar mengambil sisa ruang di samping tombol theme */
   .search-container {
-    max-width: 100%;
     margin: 0;
-    order: 2; /* Search bar di samping tombol theme di HP */
+    flex: 1;
+    max-width: none;
+  }
+
+  .search-input {
+    padding: 10px 12px 10px 38px; /* Lebih kecil sedikit untuk HP */
+    font-size: 14px;
+  }
+
+  /* Category Bar agar bisa di-scroll tipis di HP */
+  .category-bar {
+    padding: 10px 15px;
+    margin-top: 10px;
+    gap: 8px;
+  }
+
+  .cat-btn {
+    padding: 6px 14px;
+    font-size: 13px;
+  }
+
+  /* GRID FILM: 2 Kolom Rapi */
+  .content-area {
+    padding: 20px 15px;
   }
 
   .movie-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    grid-template-columns: repeat(2, 1fr); /* Pasti 2 kolom di HP */
+    gap: 15px; /* Jarak lebih rapat agar muat */
   }
 
-  .logo span { font-size: 20px; }
+  /* Movie Card Adjustment */
+  .movie-title {
+    font-size: 14px;
+  }
+
+  .movie-info {
+    padding: 10px;
+  }
+
+  .rating-badge {
+    padding: 2px 6px;
+    font-size: 10px;
+  }
+}
+
+/* Tambahan untuk layar sangat kecil */
+@media (max-width: 380px) {
+  .movie-grid {
+    gap: 10px;
+  }
+  
+  .cat-btn {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
 }
