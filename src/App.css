@@ -1,0 +1,253 @@
+/* 1. VARIABEL WARNA & DASAR */
+:root {
+  --bg-dark: #0f172a;
+  --bg-light: #f8fafc;
+  --card-dark: #1e293b;
+  --card-light: #ffffff;
+  --text-dark: #f1f5f9;
+  --text-light: #0f172a;
+  --accent: #3b82f6;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* 2. WRAPPER UTAMA */
+.app-wrapper {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.dark-theme { background-color: var(--bg-dark); color: var(--text-dark); }
+.light-theme { background-color: var(--bg-light); color: var(--text-light); }
+
+/* 3. NAVBAR & SEARCH BAR (KODE TERBARU KAMU) */
+.navbar {
+  width: 100%;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(128, 128, 128, 0.1);
+  background: rgba(15, 23, 42, 0.85); /* Dark mode header */
+}
+
+.light-theme .navbar {
+  background: rgba(248, 250, 252, 0.85); /* Light mode header */
+}
+
+.nav-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.logo-icon { color: var(--accent); }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+/* Bagian Search Bar Sesuai Request Kamu */
+.search-container {
+  flex: 1; 
+  display: flex;
+  justify-content: flex-end; 
+  max-width: 500px; 
+  margin: 0 15px;
+}
+
+.search-inner {
+  position: relative;
+  width: 100%;
+}
+
+.search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 15px 12px 42px;
+  border-radius: 12px;
+  border: 1px solid rgba(128, 128, 128, 0.2);
+  background: rgba(128, 128, 128, 0.08);
+  color: inherit;
+  font-size: 15px;
+  outline: none;
+  transition: var(--transition);
+}
+
+.search-input:focus {
+  border-color: var(--accent);
+  background: rgba(128, 128, 128, 0.12);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+}
+
+.theme-btn {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  flex-shrink: 0;
+}
+
+/* 4. CATEGORY BAR */
+.category-bar {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 5px 20px;
+  max-width: 1200px;
+  overflow-x: auto;
+  scrollbar-width: none; /* Hilangkan scrollbar di Firefox */
+}
+
+.category-bar::-webkit-scrollbar { display: none; } /* Hilangkan scrollbar di Chrome */
+
+.cat-btn {
+  white-space: nowrap;
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition);
+}
+
+.cat-btn.active, .cat-btn:hover {
+  background: var(--accent);
+  color: white;
+}
+
+/* 5. MAIN CONTENT AREA */
+.content-area {
+  width: 100%;
+  max-width: 1200px;
+  padding: 40px 20px;
+  flex-grow: 1;
+}
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 30px;
+  justify-content: center;
+}
+
+/* 6. MOVIE CARD */
+.movie-card {
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: var(--transition);
+  border: 1px solid rgba(128, 128, 128, 0.1);
+  position: relative;
+}
+
+.dark-theme .movie-card { background: var(--card-dark); }
+.light-theme .movie-card { background: var(--card-light); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+
+.movie-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--accent);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+}
+
+.card-image-wrapper { position: relative; width: 100%; }
+.movie-card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; }
+
+.card-overlay { position: absolute; top: 10px; right: 10px; }
+.rating-badge {
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.movie-info { padding: 15px; }
+.movie-title { font-size: 15px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.movie-meta { font-size: 13px; opacity: 0.6; margin-top: 5px; }
+
+/* 7. LAIN-LAIN */
+.status-box { display: flex; justify-content: center; align-items: center; min-height: 300px; width: 100%; }
+.footer { padding: 40px; opacity: 0.5; font-size: 13px; text-align: center; }
+
+/* 8. RESPONSIVE MOBILE */
+@media (max-width: 600px) {
+  .nav-container {
+    flex-direction: column; 
+    gap: 15px;
+  }
+
+  .nav-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .search-container {
+    max-width: 100%;
+    margin: 0;
+    order: 2; /* Search bar di samping tombol theme di HP */
+  }
+
+  .movie-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .logo span { font-size: 20px; }
+}
